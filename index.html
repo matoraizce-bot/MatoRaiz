@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mato Raiz CE | Registros de Câmeras Trap & Fauna Regional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2d5a27;
+      --primary-dark: #1b3818;
+      --secondary: #8c6239;
+      --accent: #e0a96d;
+      --bg-light: #f4f6f0;
+      --bg-dark: #121c11;
+      --card-bg: #ffffff;
+      --text-dark: #2c352b;
+      --text-light: #f0f4ee;
+      --shadow: 0 4px 15px rgba(0,0,0,0.1);
+      --radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      background-color: var(--primary-dark);
+      color: var(--text-light);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .btn-yt {
+      background-color: #ff0000;
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    .btn-yt:hover {
+      background-color: #cc0000;
+      transform: scale(1.05);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(rgba(18, 28, 17, 0.8), rgba(18, 28, 17, 0.85)), 
+                  url('Captura de tela 2026-05-19 213549.jpg') center/cover no-repeat;
+      color: var(--text-light);
+      text-align: center;
+      padding: 6rem 1.5rem;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background-color: #3b7433;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .btn-outline:hover {
+      background-color: var(--accent);
+      color: var(--bg-dark);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: var(--secondary);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* GALERIA DE REGISTROS (IMAGENS DA CAMERA TRAP) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card-trap {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+
+    .card-trap:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 1.2rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      background-color: #e2e8df;
+      color: var(--primary-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    /* VÍDEOS DO YOUTUBE */
+    .video-section {
+      background-color: #eaf0e6;
+      border-radius: var(--radius);
+      padding: 3rem 1.5rem;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Proporção 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      opacity: 0.8;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAV -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        Mato Raiz
+      </div>
+      <ul class="nav-links">
+        <li><a href="#registros">Registros</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a href="https://youtube.com/@matoraizce?si=d6f2EK6-L_vSTqdK" target="_blank" class="btn-yt">▶ Canal no YouTube</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Mato Raiz</h1>
+      <p>Flagrantes autênticos da vida selvagem capturados por câmeras de monitoramento (Camera Trap) na Caatinga.</p>
+      <div class="cta-buttons">
+        <a href="#registros" class="btn-primary">Ver Flagrantes</a>
+        <a href="https://www.instagram.com/mato.raiz?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="btn-outline">Perfil Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA DE FOTOS DA CAMERA TRAP -->
+  <section id="registros">
+    <h2 class="section-title">Flagrantes de Câmera Trap</h2>
+    <div class="gallery-grid">
+
+      <!-- Foto 1: Graxaim/Raposa com melancia -->
+      <div class="card-trap">
+        <img src="./img/Captura de tela 2026-05-19 213549.png" alt="Cachorro-do-mato alimentando-se na mata" class="card-img">
+        <div class="card-content">
+          <span class="card-tag">Diurno</span>
+          <h3>Cachorro-do-mato</h3>
+          <p>Registro diurno mostrando o animal alimentando-se de frutas na mata.</p>
+        </div>
+      </div>
+
+      <!-- Foto 2: Curioso no infravermelho -->
+      <div class="card-trap">
+        <img src="./img/Captura de tela 2026-08-02 094011.png" alt="Animal curioso na lente da câmera" class="card-img">
+        <div class="card-content">
+          <span class="card-tag">Noturno</span>
+          <h3>Encarando a Câmera Trap</h3>
+          <p>Flagrante noturno em infravermelho de animal curioso investigando de perto a lente do equipamento.</p>
+        </div>
+      </div>
+
+      <!-- Foto 3: Raposa / Graxaim de perfil -->
+      <div class="card-trap">
+        <img src="./img/Captura de tela 2026-08-13 231918.png" alt="Cachorro-do-mato na area de monitoramento" class="card-img">
+        <div class="card-content">
+          <span class="card-tag">Diurno</span>
+          <h3>Cachorro-do-mato no ponto de monitoramento</h3>
+          <p>Registro de um cachorro-do-mato (Cerdocyon thous) circulando pela área monitorada. A captura mostra a passagem completa do animal pelo local.</p>
+        </div>
+      </div>
+
+      <!-- Foto 4: Aves / Cancão / Cancãs -->
+      <div class="card-trap">
+        <img src="./img/Captura de tela 2026-09-20 124750.png" alt="Aves da Caatinga no solo" class="card-img">
+        <div class="card-content">
+          <span class="card-tag">Aves</span>
+          <h3>Cancãs Reunidas para se refrescar</h3>
+          <p>Quando o sol aperta, o bando se reúne no bebedouro. As cancãs mostram como a água e o alimento atraem a fauna da região nos dias mais quentes.</p>
+        </div>
+      </div>
+
+      <!-- Foto 5: Tatu / Pequeno mamífero em IR -->
+      <div class="card-trap">
+        <img src="./img/Captura de tela 2026-08-13 232521.png" alt="Peba" class="card-img">
+        <div class="card-content">
+          <span class="card-tag">Noturno</span>
+          <h3>Peba Fauna Noturna</h3>
+          <p>Pebinha em busca de alimento durante a madrugada.</p>
+        </div>
+      </div>
+
+      <!-- Foto 6: Passarinho no bebedouro -->
+      <div class="card-trap">
+        <img src="./img/Captura de tela 2026-09-22 000314.png" alt="Aves no bebedouro de solo" class="card-img">
+        <div class="card-content">
+          <span class="card-tag">Aves</span>
+          <h3>Jacupemba</h3>
+          <p>Jacupemba cismada com a presença da camêra.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+ <!-- SEÇÃO: SOBRE O PROJETO MATO RAIZ -->
+<section id="projeto" style="background-color: #ffffff; border-radius: 12px; padding: 3rem 2rem; margin-top: 3rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+  <h2 class="section-title">Conheça o Projeto Mato Raiz</h2>
+  
+  <div style="max-width: 900px; margin: 0 auto; text-align: justify; font-size: 1.05rem; line-height: 1.8;">
+    <p style="margin-bottom: 1.2rem;">
+      O <strong>Mato Raiz</strong> monitora a fauna e a vegetação da Caatinga em busca de espécies ameaçadas de extinção. Com apenas uma câmera trap, já catalogamos mais de 500 registros desde maio de 2026!
+
+Como sua ajuda faz a diferença:
+
+Manter uma câmera em campo exige trocas constantes de pilhas e manutenção do equipamento. Com o seu apoio via Pix, poderemos manter o monitoramento ativo e adquirir nossa segunda câmera trap para proteger ainda mais a vida selvagem.
+    </p>
+    
+  </div>
+</section>
+
+<!-- SEÇÃO: APOIE O PROJETO VIA PIX -->
+<section id="doacao" style="background: linear-gradient(135deg, #1b3818 0%, #2d5a27 100%); color: #ffffff; border-radius: 12px; padding: 3rem 2rem; margin-top: 3rem; text-align: center;">
+  <h2 style="font-size: 2rem; color: #e0a96d; margin-bottom: 1rem;">🌱 Apoie o Mato Raiz</h2>
+  <p style="max-width: 700px; margin: 0 auto 2rem; opacity: 0.95; font-size: 1.1rem;">
+    Manter o equipamento em campo exige baterias, manutenção das câmeras, alimentação e água para os pontos de apoio aos animais. Qualquer contribuição nos ajuda a manter as câmeras gravando!
+  </p>
+
+  <div style="background-color: rgba(255, 255, 255, 0.1); border: 2px dashed #e0a96d; max-width: 450px; margin: 0 auto; padding: 2rem; border-radius: 12px;">
+    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #e0a96d;">Chave Pix do Projeto:</h3>
+    
+    <!-- Substitua 'suachavepix@email.com' pela sua chave real -->
+    <div style="background-color: #ffffff; color: #2c352b; font-weight: bold; font-size: 1.1rem; padding: 12px; border-radius: 8px; user-select: all; word-break: break-all; margin-bottom: 1rem;" id="pixKey">
+      matoraizce@gmail.com
+    </div>
+
+    <button onclick="copiarPix()" style="background-color: #e0a96d; color: #121c11; font-weight: bold; border: none; padding: 10px 24px; border-radius: 20px; cursor: pointer; font-size: 1rem; transition: transform 0.2s;">
+      📋 Copiar Chave Pix
+    </button>
+    <p id="feedbackPix" style="margin-top: 10px; font-size: 0.9rem; color: #a3e635; display: none;">Chave Pix copiada com sucesso!</p>
+  </div>
+</section>
+
+<!-- SCRIPT PARA COPIAR A CHAVE PIX -->
+<script>
+  function copiarPix() {
+    const pixKey = document.getElementById("pixKey").innerText;
+    navigator.clipboard.writeText(pixKey).then(() => {
+      const feedback = document.getElementById("feedbackPix");
+      feedback.style.display = "block";
+      setTimeout(() => {
+        feedback.style.display = "none";
+      }, 3000);
+    });
+  }
+</script>
+
+  <!-- FOOTER -->
+  <footer id="contato">
+    <h3>Mato Raiz CE</h3>
+    <p>Preservação e monitoramento da fauna através da tecnologia de armadilhas fotográficas.</p>
+    <p style="margin-top: 1.5rem;">
+      Siga no YouTube: <a href="https://youtube.com/@matoraizce?si=d6f2EK6-L_vSTqdK" target="_blank" style="color: var(--accent); font-weight: bold; text-decoration: underline;">@matoraizce</a>
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.6;">&copy; 2026 Mato Raiz CE. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
